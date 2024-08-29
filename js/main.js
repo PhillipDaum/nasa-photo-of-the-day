@@ -1,5 +1,3 @@
-// GLOBAL VARIABLES
-// Start and end dates for API call
 const dates = [];
 
 // gets todays date and 3 days ago's date, formats correctly, pushes to date array
@@ -30,35 +28,62 @@ const getPicsFromNASA = (arr) => {
         })
 }
 
+//clears the area with the pictures from the DOM
+const clear = () => {
+    const resetButtonArea = document.getElementById("reset-button-wrapper");
+    const dailyPhotosTitle = document.getElementById("daily-photos-title");
+    const dailyPhotosGrid = document.querySelector('#daily-photos-grid');
+    resetButtonArea.innerHTML = "";
+    dailyPhotosTitle.innerHTML = "";
+    dailyPhotosGrid.innerHTML = ""
+}
+
+// updates DOM with API Data
 const updateDOM = (arr) => {
-    console.log(arr);
-    const dailyPhotosArea = document.querySelector('#daily-photos-grid');
+    // Title
+    const dailyPhotosTitle = document.getElementById("daily-photos-title");
+    let photosOfTheDayTitle = document.createElement('h2');
+    photosOfTheDayTitle.innerText = "NASA Photos of the Day";
+    dailyPhotosTitle.appendChild(photosOfTheDayTitle);
+
+    // Cards with images and descriptions
+    const dailyPhotosGrid = document.querySelector('#daily-photos-grid');
     for (item of arr) {
         let card = document.createElement("div");
         card.className = "card";
         if (item.media_type === "image") {
             card.innerHTML = `
-            <h2>${item.title}</h2>
+            <h3>${item.title}</h3>
             <img src="${item.url}">
             <p>${item.explanation}</p>
             <p>Date:${item.date}</p>
-    
-            
-            
             `
         } else {
             card.innerHTML = `
-            <h2>${item.title}</h2>
+            <h3>${item.title}</h3>
             <iframe src="${item.url}"></iframe>
+            <p>${item.explanation}</p>
+            <p>Date:${item.date}</p>
             `
-
         }
-
-        dailyPhotosArea.appendChild(card);
+        if (item.copyright != null) {
+            card.innerHTML += `<p>Photographer:${item.copyright}</p>`
+        }
+        dailyPhotosGrid.appendChild(card);
     }
+
+    // Reset button
+    const resetButtonArea = document.getElementById("reset-button-wrapper");
+    let resetButton = document.createElement("button");
+    resetButton.innerText = "RESET";
+    resetButton.addEventListener("click", clear);
+    resetButtonArea.appendChild(resetButton);
 
 }
 
+
+
+// this is the onclick function that runs the other functions
 function doEverything() {
     getDates();
     getPicsFromNASA(dates);

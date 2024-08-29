@@ -1,0 +1,39 @@
+.button-area-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: black .2rem solid;
+    padding: 2rem;
+    margin: 2rem;
+}
+
+.daily-photos-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+}
+
+.daily-photos-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.card img {
+    max-width: 20rem;
+}
+
+@media (min-width: 650px) {
+    .daily-photos-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

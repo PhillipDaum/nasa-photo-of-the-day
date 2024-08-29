@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NASA's Daily Photos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="button-area-wrapper">
         <h1>NASA Photo of the Day</h1>
         <button onclick="doEverything()">Click here to see photos</button>
     </div>
-    <div class="daily-photos-wrapper">
+    <div class="daily-photos-wrapper" id="daily-photos-wrapper">
+        <div class="daily-photos-title" id="daily-photos-title">
+        </div>
         <div class="daily-photos-grid" id="daily-photos-grid">
         </div>
+        <div class="reset-button-wrapper" id="reset-button-wrapper">
+        </div>
     </div>
-
-
-<script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
+
 </html>
